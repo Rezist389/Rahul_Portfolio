@@ -1,8 +1,8 @@
 {
   "name": "rahul-wankhede-portfolio",
   "version": "0.1.0",
-  "homepage": "https://github.com/Rezist389",
-  "private": false,
+  "homepage": "",
+  "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.0",
@@ -30,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy" : "npm run build"
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
     
   },
   "eslintConfig": {
