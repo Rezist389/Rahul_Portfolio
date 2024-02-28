@@ -11,6 +11,7 @@ export const Bio = {
   github: "https://github.com/Rezist389",
   resume:
     "https://drive.google.com/file/d/1G1AWGl_DrE_21IivVmseg2Vu81ckfES3/view?usp=sharing",
+
   linkedin: "https://www.linkedin.com/in/rahul-wankhede-030848204",
   twitter: "https://twitter.com/Rezist38",
   insta: "https://www.instagram.com/_rahul_rw/",
