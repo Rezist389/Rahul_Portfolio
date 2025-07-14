@@ -10,7 +10,7 @@ export const Bio = {
     "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   github: "https://github.com/Rezist389",
   resume:
-    "https://drive.google.com/file/d/1G1AWGl_DrE_21IivVmseg2Vu81ckfES3/view?usp=sharing",
+    "https://drive.google.com/file/d/1ruM3mHQVnnJjV9-1n5PcpYUCCPFV6kWs/view?usp=drivesdk",
 
   linkedin: "https://www.linkedin.com/in/rahul-wankhede-030848204",
   twitter: "https://twitter.com/Rezist38",
@@ -97,41 +97,7 @@ export const skills = [
       },
     ],
   },
-  {
-    title: "Machine Learning",
-    skills: [
-      {
-        name: "Python",
-        image:
-          "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
-      },
-      {
-        name: "Tenserflow",
-        image:
-          "https://static-00.iconduck.com/assets.00/tensorflow-icon-1911x2048-1m2s54vn.png",
-      },
-      {
-        name: "Keras",
-        image:
-          "https://miro.medium.com/v2/resize:fit:600/1*DKu_54iqz6C-p6ndo7rO3g.png",
-      },
-      {
-        name: "Jupyter",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1767px-Jupyter_logo.svg.png",
-      },
-      {
-        name: "Google Colab",
-        image:
-          "https://assets.stickpng.com/images/63c2e4c9c4baad4ce22bf9ef.png",
-      },
-      {
-        name: "Sk Learn Kit",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png",
-      },
-    ],
-  },
+ 
   {
     title: "Others",
     skills: [
@@ -162,9 +128,26 @@ export const skills = [
 ];
 
 export const experiences = [
-  {
+   {
     id: 0,
-    img: "https://media.licdn.com/dms/image/D560BAQH5YHtpxAHvDA/company-logo_200_200/0/1694512590827/numetry_technologies_logo?e=1714608000&v=beta&t=oNrYDy6pg4YFAyNwiCOYZ1-E0DsVJjL6xQjsKAy5v9s",
+    img: "https://brandeps.com/logo-download/T/TATA-Consultancy-Services-logo-vector-01.svg",
+    role: "Assistant System Engineer",
+    company: "Tata Consultancy Services",
+    date: "Aug 2024 - Present",
+    desc: "- Spearheaded frontend development for Jaguar Land Rover Halewood Plant, benefiting 500+ users. -Engineered and optimized React.js UI integrated with .NET APIs and MySQL/MongoDB, improving data efficiency by 35%. -Enhanced workflows through Agile methodologies, reducing project turnaround time by 20%. - Created a Detailed troubleshooting guide for common React errors, reducing the resolution time by 5 hours per week and empowering others who will join the project in the future to solve errors.",
+    skills: [
+      "ReactJS",
+      ".Net",
+      "MySQL",
+      "JavaScript",
+      "Git",
+      "Jira",
+    ],
+    
+  },
+  {
+    id: 1,
+    img: "https://media.licdn.com/dms/image/v2/D560BAQH5YHtpxAHvDA/company-logo_200_200/company-logo_200_200/0/1694512590827/numetry_technologies_logo?e=2147483647&v=beta&t=ivMloinovGQuG1X7un2ik1048qLUB2tU_0NPsIyYdFs",
     role: "Full Stack Inter Intern",
     company: "Numetry Technologies",
     date: "Jan 2024 - Present",
@@ -182,7 +165,7 @@ export const experiences = [
     
   },
   {
-    id: 1,
+    id: 2,
     img: "https://th.bing.com/th/id/OIP._d8Yk6qvzumYJAzyiZV8DQAAAA?w=175&h=176&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     role: "Front End Intern ",
     company: "Raise Digital",
@@ -195,7 +178,7 @@ export const experiences = [
       "Django",
       "Material UI",
     ],
-    doc: "https://drive.google.com/file/d/1b1o5z8ykFRYJOFkiY7wGB6OhmyCf_rxo/view?usp=drive_link",
+   
   },
   
 ];
@@ -205,10 +188,9 @@ export const education = [
     id: 0,
     img: "https://th.bing.com/th/id/OIP.4GQ5pRmUI4cxkEXsqMfUhgHaHa?w=165&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     school: "Shri Guru Gobind Singhji Institute of Engineering and Technology (SGGSIET), Nanded, Maharastra",
-    date: "Jan 2021 - May 2024",
-    grade: "8.15 CGPA",
-    desc: "I am currently pursuing a Bachelor's degree in Information Technology at Shri Guru Gobind Singhji Institute of Engineering and Technology (SGGSIET), Nanded, Maharastra. I have completed 7 semesters and have a CGPA of 8.15. I have taken courses in Data Structures, Algorithms, Object-Oriented Programming, Database Management Systems, Operating Systems, and Computer Networks, among others.",
-    degree: "Bachelor of Technology - B.Tech, Information Technology",
+    date: "Jan 2021 - June 2024",
+    grade: "7.96 CGPA",
+    desc: "I have a Bachelor's degree in Information Technology at Shri Guru Gobind Singhji Institute of Engineering and Technology (SGGSIET), Nanded, Maharastra.",
   },
   {
     id: 1,
@@ -216,7 +198,7 @@ export const education = [
     school: "St. Paul Jr. College Nagpur, Maharastra",
     date: "Apr 2019 - Apr 2020",
     grade: "80.3%",
-    desc: "I completed my class 12 high school education at St. Paul Jr. College Nagpur, Maharastra, where I studied Science with Electronics.",
+    desc: "I completed my class 12 high school education from  St. Paul Jr. College Nagpur, Maharastra, where I studied Science with Electronics.",
     degree: " HSC(XII), Science with Electronic",
   },
   {
@@ -225,7 +207,7 @@ export const education = [
     school: "Sanjuba High School [C.B.S.E], Nagpur, Mahrastra",
     date: "June 2017 - March 2018",
     grade: "90.4%",
-    desc: "I completed my class 10 education at Sanjuba High School [C.B.S.E], Nagpur, Mahrastra, where I studied Science with Computer Application.",
+    desc: "I completed my class 10 education from Sanjuba High School [C.B.S.E], Nagpur, Mahrastra",
     degree: "CBSE(X), Science with Computer",
   },
 ];
@@ -238,7 +220,7 @@ export const projects = [
     description:
       "Developed a responsive E-learning website comprised over 10 pages enabling the creation and viewing of courses by teachers and students.",
     image:
-      "https://img.freepik.com/premium-vector/e-learning-landing-page-website-illustration_128772-163.jpg",
+      "https://dldxedu.com/wp-content/uploads/2024/02/What-Role-Does-a-Project-Manager-in-an-E-learning-Program-Play.jpg",
     tags: [
       "HTML",
       "CSS",
@@ -278,20 +260,12 @@ export const projects = [
     description:
       "Preprocessed and augmented the dataset to improve model accuracy, trained the model, created API using model and Python. Achievements: Achieved an accuracy of 98.2% to accurately detect Phising websites.",
     image:
-      "https://th.bing.com/th/id/OIP.S42hZNNlB8FSgXLuYxLJwQHaEI?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+     
+      "https://th.bing.com/th/id/OIP.aSUxK6S18bB8zr5Lb_TQMAHaEg?w=275&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     tags: ["Python", "Keras", "TensorFlow", "VGG16" ],
     category: "machine learning",
     github: "https://github.com/Rezist389/Phising-detection-website-",
     webapp: "https://github.com/Rezist389/Phising-detection-website-",
-    member: [
-      {
-        name: "Rahul Wankhede",
-        img: "./Rahul Pic  (1).jpg",
-        linkedin: "https://www.linkedin.com/in/rahul-wankhede-030848204/",
-        github: "https://github.com/Rezist389",
-      },
-     
-    ],
   },
   
   
@@ -303,7 +277,7 @@ export const projects = [
     description:
       " A Todo Web App made with React JS, Redux, and Material UI. It has a login page where users can log in with their Google account. It has a sidebar where users can see all the tasks and can create a new task. It has a calendar where users can see all the tasks on a particular date. It has a search bar where users can search for a particular task.",
     image:
-      "https://camo.githubusercontent.com/84ac6ab6f378348ef28d8184062b7e9e3511a1252ae3966eaa49e8e998f732a7/68747470733a2f2f666972656261736573746f726167652e676f6f676c65617069732e636f6d2f76302f622f746f646f2d6170702d63386331392e61707073706f742e636f6d2f6f2f53637265656e73686f74253230283938292e706e673f616c743d6d6564696126746f6b656e3d33643335646366322d626666322d343730382d393031632d343232383866383332386633",
+      "https://c8.alamy.com/comp/2A1PX6K/todo-list-on-clipboard-with-pen-web-template-landing-page-concept-note-and-task-to-do-on-board-with-paper-clip-web-template-illustration-pen-and-clipboard-with-todo-list-on-green-background-2A1PX6K.jpg",
     tags: ["React Js", "Local Storage", "AWS Auth", "Node JS"],
     category: "web app",
     github: "https://github.com/Rezist389/To_Do_app",
@@ -318,7 +292,7 @@ export const projects = [
     description:
       "A Fake Currency detection python app made with OpenCV. It uses image detection library to detect fake currecny. It uses the cam to detect currecny.",
     image:
-      "https://th.bing.com/th/id/OIP.aSUxK6S18bB8zr5Lb_TQMAHaEg?w=275&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+     " https://th.bing.com/th/id/OIP.S42hZNNlB8FSgXLuYxLJwQHaEI?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     tags: ["Python", "Keras", "TensorFlow", "VGG16", "Pickle", "React"],
     category: "machine learning",
     github: "https://github.com/Rezist389/Fake-Currency-detection",
