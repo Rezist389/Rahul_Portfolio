@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { Snackbar } from '@mui/material';
-import index from '../Education';
+import emailjs from '@emailjs/browser'
+import { Snackbar, Alert } from '@mui/material'
 
 const Container = styled.div`
 display: flex;
@@ -69,7 +67,7 @@ const ContactForm = styled.form`
   gap: 12px;
 `
 
-const ContactTitle = styled.div`
+const ContactTitle = styled.label`
   font-size: 24px;
   margin-bottom: 6px;
   font-weight: 600;
@@ -104,7 +102,7 @@ const ContactInputMessage = styled.textarea`
   }
 `
 
-const ContactButton = styled.input`
+const ContactButton = styled.button`
   width: 100%;
   text-decoration: none;
   text-align: center;
@@ -119,49 +117,64 @@ const ContactButton = styled.input`
   color: ${({ theme }) => theme.text_primary};
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `
 
-
-
 const Contact = () => {
-
-  //hooks
-  const [open, setOpen] = React.useState(false);
-  const form = useRef();
+  const [open, setOpen] = useState(false)
+  const [errorOpen, setErrorOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const form = useRef()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    emailjs.sendForm('service_z7xxndj', 'template_t0zqjpb', form.current, 'qLX4CFfFz2pXa3jd6')
-      .then((result) => {
-        setOpen(true);
-        form.current.reset();
-      }, (error) => {
-        console.log(error.text);
-      });
+    e.preventDefault()
+    if (loading) return
+    setLoading(true)
+    emailjs
+      .sendForm('service_ausgwnc', 'template_t0zqjpb', form.current, 'qLX4CFfFz2pXa3jd6')
+      .then(
+        (result) => {
+          setOpen(true)
+          form.current.reset()
+          setLoading(false)
+        },
+        (error) => {
+          console.error(error.text)
+          setErrorOpen(true)
+          setLoading(false)
+        }
+      )
   }
 
-
-
   return (
-    <Container id ="contact">
+    <Container id="contact">
       <Wrapper>
         <Title>Contact</Title>
         <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
         <ContactForm ref={form} onSubmit={handleSubmit}>
-          <ContactTitle>Email Me 🚀</ContactTitle>
-          <ContactInput placeholder="Your Email" name="from_email" />
-          <ContactInput placeholder="Your Name" name="from_name" />
-          <ContactInput placeholder="Subject" name="subject" />
-          <ContactInputMessage placeholder="Message" rows="4" name="message" />
-          <ContactButton type="submit" value="Send"/>
+          <ContactTitle htmlFor="from_email">Email Me 🚀</ContactTitle>
+          <ContactInput id="from_email" placeholder="Your Email" name="from_email" type="email" required />
+          <ContactInput id="from_name" placeholder="Your Name" name="from_name" required />
+          <ContactInput id="subject" placeholder="Subject" name="subject" required />
+          <ContactInputMessage id="message" placeholder="Message" rows="4" name="message" required />
+          <ContactButton type="submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Send'}
+          </ContactButton>
         </ContactForm>
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          onClose={()=>setOpen(false)}
-          message="Email sent successfully!"
-          severity="success"
-        />
+        <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
+          <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+            Email sent successfully!
+          </Alert>
+        </Snackbar>
+        <Snackbar open={errorOpen} autoHideDuration={6000} onClose={() => setErrorOpen(false)}>
+          <Alert onClose={() => setErrorOpen(false)} severity="error" sx={{ width: '100%' }}>
+            Failed to send email. Please try again.
+          </Alert>
+        </Snackbar>
       </Wrapper>
     </Container>
   )
