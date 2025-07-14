@@ -266,6 +266,7 @@ export const projects = [
     category: "machine learning",
     github: "https://github.com/Rezist389/Phising-detection-website-",
     webapp: "https://github.com/Rezist389/Phising-detection-website-",
+   
   },
   
   
