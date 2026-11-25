@@ -1,186 +1,217 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
-const Document = styled.img`
-    display: none;
-    height: 70px;
-    width: fit-content;
-    background-color: #000;
-    border-radius: 10px;
-    &:hover{
-        cursor: pointer;
-        opacity: 0.8;
-    }
-`
+const Card = styled.article`
+  width: 100%;
+  border-radius: 1.25rem;
+  background: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme, $highlight }) => ($highlight ? theme.borderStrong : theme.border)};
+  padding: clamp(1.25rem, 2.2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: all 0.25s ease;
 
-const Description = styled.div`
-    width: 100%;
-    font-size: 15px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_primary + 99};
-    margin-bottom: 10px;
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
+  &:hover {
+    border-color: ${({ theme }) => theme.borderStrong};
+    transform: translateY(-3px);
+    box-shadow: ${({ theme }) => theme.shadow};
+  }
+`;
 
-const Span = styled.span`
-overflow: hidden;
-display: -webkit-box;
-max-width: 100%;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
-`
+const HeaderRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
 
-const Card = styled.div`
-    width: 650px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    padding: 12px 16px;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all 0.3s ease-in-out;
-    &:hover{
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        transform: translateY(-5px);
-    }
-    @media only screen and (max-width: 768px){
-        padding: 10px;
-        gap: 8px;
-        width: 300px;
-    }
+const LeftInfo = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+`;
 
-    &:hover ${Document}{
-        display: flex;
-    }
+const LogoBox = styled.div`
+  width: 3.25rem;
+  height: 3.25rem;
+  min-width: 3.25rem;
+  border-radius: 0.85rem;
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.border};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme.primary};
+`;
 
-    &:hover ${Span}{
-        overflow: visible;
-        -webkit-line-clamp: unset;
+const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.35rem;
+  background: #ffffff;
+`;
 
-    }
+const TitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
 
-    border: 0.1px solid #306EE8;
-    box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
-`
-
-const Top = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 12px
-`
-
-const Image = styled.img`
-    height: 50px;
-    background-color: #000;
-    border-radius: 10px;
-    margin-top: 4px;
-    @media only screen and (max-width: 768px){
-        height: 40px;
-    }
-`
-
-const Body = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column; 
-`
-
-
-const Role = styled.div`
-    font-size: 18px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text_primary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 14px;
-    }
-`
+const Role = styled.h3`
+  font-size: clamp(1.08rem, 1.3vw, 1.3rem);
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+`;
 
 const Company = styled.div`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.primary};
+`;
 
-const Date = styled.div`
-    font-size: 12px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 80};
-    @media only screen and (max-width: 768px){
-        font-size: 10px;
-    }
-`
+const ClientNote = styled.div`
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text_muted};
+`;
 
+const MetaBadges = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
 
-const Skills = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 12px;
-    margin-top: -10px;
-`
+const DatePill = styled.span`
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 0.38rem 0.78rem;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.border};
+  color: ${({ theme }) => theme.text_secondary};
+`;
 
-const ItemWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-`
+const TypePill = styled.span`
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: ${({ theme, $current }) => ($current ? theme.successSoft : theme.primarySoft)};
+  color: ${({ theme, $current }) => ($current ? theme.success : theme.primary)};
+`;
 
-const Skill = styled.div`
-    font-size: 15px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_primary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
+const Summary = styled.p`
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: ${({ theme }) => theme.text_secondary};
+`;
 
+const BulletList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+`;
 
+const BulletItem = styled.li`
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: ${({ theme }) => theme.text_secondary};
 
-const ExperienceCard = ({ experience }) => {
-    return (
-        <Card>
-            <Top>
-                <Image src={experience.img} />
-                <Body>
-                    <Role>{experience.role}</Role>
-                    <Company>{experience.company}</Company>
-                    <Date>{experience.date}</Date>
-                </Body>
-            </Top>
-            <Description>
-                {experience?.desc &&
-                    <Span>{experience?.desc}</Span>
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.58rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.primary};
+  }
+`;
 
-                }
-                {experience?.skills &&
-                    <>
-                        <br />
-                        <Skills>
-                            <b>Skills:</b>
-                            <ItemWrapper>
-                                {experience?.skills?.map((skill, index) => (
-                                    <Skill>• {skill}</Skill>
-                                ))}
-                            </ItemWrapper>
-                        </Skills>
-                    </>
-                }
-            </Description>
-            {experience.doc &&
-                <a href={experience.doc} target="new">
-                    <Document src={experience.doc} />
-                </a>
-            }
-        </Card>
-    )
-}
+const SkillsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid ${({ theme }) => theme.border};
+`;
 
-export default ExperienceCard
+const SkillTag = styled.span`
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text_primary};
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.border};
+  padding: 0.32rem 0.7rem;
+  border-radius: 0.5rem;
+`;
+
+const ExperienceCard = ({ experience, isCurrent }) => {
+  const [imgError, setImgError] = useState(!experience.img);
+
+  return (
+    <Card $highlight={isCurrent}>
+      <HeaderRow>
+        <LeftInfo>
+          <LogoBox>
+            {!imgError && experience.img ? (
+              <LogoImg
+                src={experience.img}
+                alt={experience.company}
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              experience.monogram || experience.company.slice(0, 2).toUpperCase()
+            )}
+          </LogoBox>
+          <TitleBlock>
+            <Role>{experience.role}</Role>
+            <Company>{experience.company}</Company>
+            {experience.client && <ClientNote>{experience.client}</ClientNote>}
+          </TitleBlock>
+        </LeftInfo>
+
+        <MetaBadges>
+          {experience.type && <TypePill $current={isCurrent}>{experience.type}</TypePill>}
+          <DatePill>{experience.date}</DatePill>
+        </MetaBadges>
+      </HeaderRow>
+
+      {experience.desc && <Summary>{experience.desc}</Summary>}
+
+      {experience.bullets && experience.bullets.length > 0 && (
+        <BulletList>
+          {experience.bullets.map((point, idx) => (
+            <BulletItem key={idx}>{point}</BulletItem>
+          ))}
+        </BulletList>
+      )}
+
+      {experience.skills && (
+        <SkillsRow>
+          {experience.skills.map((skill) => (
+            <SkillTag key={skill}>{skill}</SkillTag>
+          ))}
+        </SkillsRow>
+      )}
+    </Card>
+  );
+};
+
+export default ExperienceCard;

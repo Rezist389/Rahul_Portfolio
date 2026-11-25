@@ -1,150 +1,120 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
+import { SchoolRounded } from "@mui/icons-material";
 
-const Document = styled.img`
-    display: none;
-    height: 70px;
-    width: fit-content;
-    background-color: #000;
-    border-radius: 10px;
-    &:hover{
-        cursor: pointer;
-        opacity: 0.8;
-    }
-`
+const Card = styled.article`
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+  background: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme }) => theme.border};
+  padding: clamp(1.35rem, 2vw, 1.9rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.22s ease;
 
-const Description = styled.div`
-    width: 100%;
-    font-size: 15px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_primary + 99};
-    margin-bottom: 10px;
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
+  &:hover {
+    border-color: ${({ theme }) => theme.borderStrong};
+    transform: translateY(-4px);
+    box-shadow: ${({ theme }) => theme.shadow};
+  }
+`;
 
-const Span = styled.span`
-overflow: hidden;
-display: -webkit-box;
-max-width: 100%;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
-`
+const TopMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+`;
 
-const Card = styled.div`
-    width: 650px;
-    border-radius: 10px;
-    box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
-    padding: 12px 16px;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all 0.3s ease-in-out;
-    &:hover{
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        transform: translateY(-5px);
-    }
-    @media only screen and (max-width: 768px){
-        padding: 10px;
-        gap: 8px;
-        width: 300px;
-    }
+const IconBadge = styled.div`
+  width: 2.8rem;
+  height: 2.8rem;
+  min-width: 2.8rem;
+  border-radius: 0.75rem;
+  background: ${({ theme }) => theme.primarySoft};
+  border: 1px solid ${({ theme }) => theme.borderStrong};
+  color: ${({ theme }) => theme.primary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-    &:hover ${Document}{
-        display: flex;
-    }
+const RightMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+`;
 
-    &:hover ${Span}{
-        overflow: visible;
-        -webkit-line-clamp: unset;
+const GradeBadge = styled.span`
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.primarySoft};
+  color: ${({ theme }) => theme.primary};
+`;
 
-    }
-    border: 0.1px solid #854CE6;
-`
+const DateBadge = styled.span`
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.card_light};
+  border: 1px solid ${({ theme }) => theme.border};
+  color: ${({ theme }) => theme.text_muted};
+`;
 
-const Top = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 12px
-`
+const TitleInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+`;
 
-const Image = styled.img`
-    height: 50px;
-    background-color: #000;
-    border-radius: 10px;
-    margin-top: 4px;
-    @media only screen and (max-width: 768px){
-        height: 40px;
-    }
-`
+const Degree = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+  line-height: 1.35;
+`;
 
-const Body = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column; 
-`
+const School = styled.div`
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.primary};
+  line-height: 1.45;
+`;
 
-
-const Name = styled.div`
-    font-size: 18px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text_primary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 14px;
-    }
-`
-
-const Degree = styled.div`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
-
-const Date = styled.div`
-    font-size: 12px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 80};
-    @media only screen and (max-width: 768px){
-        font-size: 10px;
-    }
-`
-
-const Grade = styled.div`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
-
-
+const Description = styled.p`
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: ${({ theme }) => theme.text_secondary};
+  margin-top: auto;
+`;
 
 const EducationCard = ({ education }) => {
-    return (
-        <Card>
-            <Top>
-                <Image src={education.img} />
-                <Body>
-                    <Name>{education.school}</Name>
-                    <Degree>{education.degree}</Degree>
-                    <Date>{education.date}</Date>
-                </Body>
-            </Top>
-            <Grade><b>Grade: </b>{education.grade}</Grade>
-            <Description>
-                <Span>{education.desc}</Span>
-            </Description>
-        </Card>
-    )
-}
+  return (
+    <Card data-reveal>
+      <TopMeta>
+        <IconBadge>
+          <SchoolRounded fontSize="small" />
+        </IconBadge>
+        <RightMeta>
+          <GradeBadge>{education.grade}</GradeBadge>
+          <DateBadge>{education.date}</DateBadge>
+        </RightMeta>
+      </TopMeta>
+      <TitleInfo>
+        <Degree>{education.degree}</Degree>
+        <School>{education.school}</School>
+      </TitleInfo>
+      {education.desc && <Description>{education.desc}</Description>}
+    </Card>
+  );
+};
 
-export default EducationCard
+export default EducationCard;

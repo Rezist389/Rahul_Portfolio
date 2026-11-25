@@ -1,41 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    
+:root {
+  --gutter: clamp(16px, 4.8vw, 112px);
+  --section-py: clamp(56px, 8vh, 132px);
+  --nav-h: clamp(66px, 6.2vh, 90px);
 }
 
-html{
-  scroll-behavior: smooth;
-}
-
-body{
-  margin: 0px !important;
+* {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
 }
 
-/* width */
+/* Fluid root font-size: scales from ~15px on small phones -> 16px on laptops -> 19px on QHD -> 23px on 4K TVs */
+html {
+  font-size: clamp(15px, 0.32vw + 11.8px, 23px);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  margin: 0 !important;
+  padding: 0;
+  width: 100%;
+  min-height: 100svh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+  color: inherit;
+}
+
+/* Dynamic scroll-reveal transitions */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Custom sleek scrollbar */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 80px;
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070B14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background:#222A35;
+  50% {
+    opacity: 0.55;
+    transform: scale(1.18);
   }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #575C66;
-    border-radius: 6px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #626970;
-  }
+}
